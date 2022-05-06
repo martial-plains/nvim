@@ -135,7 +135,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lua"
   use {
     'saecki/crates.nvim',
-    event = { "BufRead Cargo.toml" },
     requires = { { 'nvim-lua/plenary.nvim' } },
     config = function()
       require('crates').setup()

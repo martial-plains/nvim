@@ -52,6 +52,9 @@ function M.load_augroups()
 		_general_lsp = {
 			{ "FileType", "lspinfo,lsp-installer,null-ls-info", "nnoremap <silent> <buffer> q :close<CR>" },
 		},
+    _cmp = {
+      { "FileType", "toml", "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }" },
+    },
 		custom_groups = {},
 	}
 end

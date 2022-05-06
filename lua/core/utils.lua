@@ -178,31 +178,6 @@ function M.add_user_cmp_source(source)
   end
 end
 
-function M.alpha_button(sc, txt)
-  local sc_ = sc:gsub("%s", ""):gsub("LDR", "<leader>")
-  if vim.g.mapleader then
-    sc = sc:gsub("LDR", vim.g.mapleader == " " and "SPC" or vim.g.mapleader)
-  end
-  return {
-    type = "button",
-    val = txt,
-    on_press = function()
-      local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
-      vim.api.nvim_feedkeys(key, "normal", false)
-    end,
-    opts = {
-      position = "center",
-      text = txt,
-      shortcut = sc,
-      cursor = 5,
-      width = 36,
-      align_shortcut = "right",
-      hl = "DashboardCenter",
-      hl_shortcut = "DashboardShortcut",
-    },
-  }
-end
-
 function M.label_plugins(plugins)
   local labelled = {}
   for _, plugin in ipairs(plugins) do
@@ -243,23 +218,6 @@ end
 function M.toggle_url_match()
   vim.g.highlighturl_enabled = not vim.g.highlighturl_enabled
   M.set_url_match()
-end
-
-function M.update()
-  (require "plenary.job")
-      :new({
-        command = "git",
-        args = { "pull", "--ff-only" },
-        cwd = vim.fn.stdpath "config",
-        on_exit = function(_, return_val)
-          if return_val == 0 then
-            vim.notify("Updated!", "info", M.base_notification)
-          else
-            vim.notify("Update failed! Please try pulling manually.", "error", M.base_notification)
-          end
-        end,
-      })
-      :sync()
 end
 
 return M
