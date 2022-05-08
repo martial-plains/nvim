@@ -50,6 +50,7 @@ return packer.startup(function(use)
       require("configs.notify")
     end,
   }
+  use "jeffkreeftmeijer/vim-numbertoggle"
   use {
     "windwp/nvim-autopairs",
     config = function()
@@ -182,8 +183,6 @@ return packer.startup(function(use)
   use "theHamsta/nvim-dap-virtual-text"
   use "rcarriga/nvim-dap-ui"
   use "Pocco81/DAPInstall.nvim"
-
-
 
 
   -- Automatically set up your configuration after cloning packer.nvim
