@@ -174,8 +174,13 @@ return packer.startup(function(use)
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   })
-  use("github/copilot.vim")
   use("RRethy/vim-illuminate")
+  use({
+    "glepnir/lspsaga.nvim",
+    config = function ()
+      require("configs.lspsaga")
+    end
+  })
 
   -- DAP
 

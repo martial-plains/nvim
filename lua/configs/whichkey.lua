@@ -97,10 +97,9 @@ local m_mappings = {
 local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<cr>", "Quit" },
+  ["q"] = { "<cmd>q<cr>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 
-  ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
   ["gy"] = "Link",
 
   p = {
@@ -148,7 +147,7 @@ local mappings = {
 
   l = {
     name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+    a = { "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", "Code Action" },
     d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
     w = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
@@ -169,7 +168,7 @@ local mappings = {
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     o = { "<cmd>SymbolsOutline<cr>", "Outline" },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    r = { "<cmd>lua require('lspsaga.rename').lsp_rename()<cr>", "Rename" },
     R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
     S = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
