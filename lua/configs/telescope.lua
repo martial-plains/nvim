@@ -93,10 +93,10 @@ telescope.setup({
 	},
 	pickers = {
 		find_files = {
-			layout_strategy = "vertical",
+      theme = "dropdown",
 			layout_config = {
-				width = 0.3,
-				height = 0.2,
+				width = 0.6,
+				height = 0.3,
 			}
 		},
 		colorscheme = {
