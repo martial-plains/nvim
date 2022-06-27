@@ -99,6 +99,12 @@ return packer.startup(function(use)
       require("configs.spectre")
     end,
   })
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
 
   -- Colorschemes
   use("navarasu/onedark.nvim")
@@ -177,9 +183,9 @@ return packer.startup(function(use)
   use("RRethy/vim-illuminate")
   use({
     "glepnir/lspsaga.nvim",
-    config = function ()
+    config = function()
       require("configs.lspsaga")
-    end
+    end,
   })
 
   -- DAP
