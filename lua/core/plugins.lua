@@ -78,6 +78,7 @@ return packer.startup(function(use)
       require("configs.lualine")
     end,
   })
+  use("ziglang/zig.vim")
   use({
     "akinsho/toggleterm.nvim",
     config = function()
