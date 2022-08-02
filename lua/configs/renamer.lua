@@ -16,6 +16,7 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true }
 )
 local mappings_utils = require("renamer.mappings.utils")
+
 renamer.setup({
 	-- The popup title, shown if `border` is true
 	title = "Rename",

@@ -104,8 +104,12 @@ return packer.startup(function(use)
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require("Comment").setup()
+      require("configs.comment")
     end,
+  })
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   })
 
   -- Colorschemes
@@ -165,6 +169,9 @@ return packer.startup(function(use)
   }) -- enable LSP
   use({
     "williamboman/nvim-lsp-installer",
+    config = function ()
+      require("core.lsp.lsp-installer")
+    end,
     -- after = "nvim-lspconfig",
   }) -- simple to use language server installer
   use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
@@ -173,6 +180,9 @@ return packer.startup(function(use)
   }) -- for formatters and linters
   use({
     "filipdutescu/renamer.nvim",
+    config = function ()
+      require("configs.renamer")
+    end,
   })
   use({
     "ray-x/lsp_signature.nvim",
