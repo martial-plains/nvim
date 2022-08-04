@@ -68,3 +68,7 @@ require('lspconfig')['rust_analyzer'].setup{
       ["rust-analyzer"] = {}
     }
 }
+require('lspconfig')['omnisharp'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}

@@ -4,4 +4,4 @@ if not status_ok then
 end
 
 
-vim.cmd("colorscheme dracula")
+vim.cmd("colorscheme nord")
