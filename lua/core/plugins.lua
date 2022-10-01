@@ -96,7 +96,7 @@ return packer.startup(function(use)
     },
   })
   use({
-    "windwp/nvim-spectre",
+    "nvim-pack/nvim-spectre",
     config = function()
       require("configs.spectre")
     end,
