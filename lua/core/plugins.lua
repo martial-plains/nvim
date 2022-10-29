@@ -195,6 +195,7 @@ return packer.startup(function(use)
   use("RRethy/vim-illuminate")
   use({
     "glepnir/lspsaga.nvim",
+    branch = "main",
     config = function()
       require("configs.lspsaga")
     end,

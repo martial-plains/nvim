@@ -5,5 +5,5 @@ end
 
 require "core.lsp.lsp-signature"
 require "core.lsp.lsp-installer"
-require("core.lsp.handlers").setup()
-require("core.lsp.null-ls")
+require "core.lsp.handlers"
+require "core.lsp.null-ls"

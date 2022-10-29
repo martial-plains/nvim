@@ -47,7 +47,4 @@ lspsaga.setup({
   highlight_prefix = false,
 })
 
-lspsaga.init_lsp_saga {
-
-}
-
+lspsaga.init_lsp_saga()
