@@ -105,9 +105,15 @@ telescope.setup({
 			enable_preview = true,
 		},
 	},
-	extensions = {},
+	extensions = {
+    file_browser = {},
+    ["ui-select"] = {},
+    media_files = {},
+    vim_bookmarks = {},
+  },
 })
--- telescope.load_extension "ui-select"
+
+
 telescope.load_extension("file_browser")
 telescope.load_extension("ui-select")
 telescope.load_extension("media_files")
