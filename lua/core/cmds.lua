@@ -1,6 +1,25 @@
 local M = {}
 
---- Load the default set of autogroups and autocommands.
+local function open_nvim_tree(data)
+
+  -- buffer is a [No Name]
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if no_name or not directory then
+    return
+  end
+
+  -- change to the directory
+  if directory then
+    vim.cmd.cd(data.file)
+  end
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end--- Load the default set of autogroups and autocommands.
 function M.load_augroups()
 	local user_config_file = require("lvim.config"):get_user_config_path()
 
@@ -52,9 +71,9 @@ function M.load_augroups()
 		_general_lsp = {
 			{ "FileType", "lspinfo,lsp-installer,null-ls-info", "nnoremap <silent> <buffer> q :close<CR>" },
 		},
-    _cmp = {
-      { "FileType", "toml", "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }" },
-    },
+		_cmp = {
+			{ "FileType", "toml", "lua require('cmp').setup.buffer { sources = { { name = 'crates' } } }" },
+		},
 		custom_groups = {},
 	}
 end
@@ -115,5 +134,7 @@ function M.define_augroups(definitions, buffer)
 		vim.cmd("augroup END")
 	end
 end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 return M

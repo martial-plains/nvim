@@ -63,7 +63,7 @@ return packer.startup(function(use)
 			require("configs.whichkey")
 		end,
 	})
-	use("kyazdani42/nvim-web-devicons")
+	use("nvim-tree/nvim-web-devicons")
 	use({
 		"akinsho/bufferline.nvim",
 		after = "nvim-web-devicons",
@@ -112,6 +112,19 @@ return packer.startup(function(use)
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
+	})
+
+	-- Dashboard
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+    after = "nvim-web-devicons",
+		config = function()
+			require("dashboard").setup({
+				-- config
+			})
+		end,
+		requires = { "nvim-tree/nvim-web-devicons" },
 	})
 
 	-- Colorschemes
