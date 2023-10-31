@@ -17,17 +17,7 @@ return {
 	},
 	{ "tpope/vim-repeat", event = "VeryLazy" },
 	{ "nacro90/numb.nvim", event = "BufReadPre", config = true },
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		opts = {
-			-- char = "▏",
-			char = "│",
-			filetype_exclude = { "help", "alpha", "NvimTree", "Trouble", "lazy", "mason" },
-			show_trailing_blankline_indent = false,
-			show_current_context = false,
-		},
-	},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		"stevearc/dressing.nvim",
 		event = "VeryLazy",
