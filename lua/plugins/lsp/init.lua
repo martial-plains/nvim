@@ -32,7 +32,6 @@ return {
 						},
 					},
 				},
-				dockerls = {},
 			},
 			setup = {
 				lua_ls = function(_, _)

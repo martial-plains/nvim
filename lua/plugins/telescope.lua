@@ -237,14 +237,13 @@ return {
 					},
 				},
 			}
-			telescope.setup(opts)
+			-- telescope.setup(opts)
 			telescope.load_extension("fzf")
 			telescope.load_extension("file_browser")
 			telescope.load_extension("project")
 			telescope.load_extension("projects")
 			telescope.load_extension("aerial")
 			telescope.load_extension("dap")
-			telescope.load_extension("frecency")
 			telescope.load_extension("luasnip")
 			telescope.load_extension("conventional_commits")
 			telescope.load_extension("lazy")
