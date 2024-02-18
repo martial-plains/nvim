@@ -10,23 +10,26 @@ return {
 			require("mini.map").setup(opts)
 		end,
 	},
-	-- {
-	--   "echasnovski/mini.jump",
-	--   opts = {},
-	--   keys = { "f", "F", "t", "T" },
-	--   config = function(_, opts)
-	--     require("mini.jump").setup(opts)
-	--   end,
-	-- },
-	-- {
-	--   "echasnovski/mini.move",
-	--   enabled = false,
-	--   opts = {},
-	--   keys = { "<<M-h>", "<M-l>", "<M-j>", "<M-k>" },
-	--   config = function(_, opts)
-	--     require("mini.move").setup(opts)
-	--   end,
-	-- },
+
+	{
+		"echasnovski/mini.jump",
+		opts = {},
+		keys = { "f", "F", "t", "T" },
+		config = function(_, opts)
+			require("mini.jump").setup(opts)
+		end,
+	},
+
+	{
+		"echasnovski/mini.move",
+		enabled = false,
+		opts = {},
+		keys = { "<<M-h>", "<M-l>", "<M-j>", "<M-k>" },
+		config = function(_, opts)
+			require("mini.move").setup(opts)
+		end,
+	},
+
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
@@ -91,6 +94,7 @@ return {
 			end
 		end,
 	},
+
 	{
 		"echasnovski/mini.bufremove",
     -- stylua: ignore
@@ -100,6 +104,7 @@ return {
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
     },
 	},
+
 	{
 		"echasnovski/mini.animate",
 		event = "VeryLazy",
@@ -108,27 +113,82 @@ return {
 			require("mini.animate").setup()
 		end,
 	},
-	-- {
-	--   "echasnovski/mini.comment",
-	--   event = "VeryLazy",
-	--   opts = {
-	--     hooks = {
-	--       pre = function()
-	--         require("ts_context_commentstring.internal").update_commentstring {}
-	--       end,
-	--     },
-	--   },
-	--   config = function(_, opts)
-	--     require("mini.comment").setup(opts)
-	--   end,
-	-- },
-	-- {
-	--   "echasnovski/mini.pairs",
-	--   event = "VeryLazy",
-	--   config = function(_, opts)
-	--     require("mini.pairs").setup(opts)
-	--   end,
-	-- },
+
+	{
+		"echasnovski/mini.clue",
+		event = "VeryLazy",
+		enabled = true,
+		config = function(_, _)
+			local miniclue = require("mini.clue")
+			require("mini.clue").setup({
+				triggers = {
+					-- Leader triggers
+					{ mode = "n", keys = "<Leader>" },
+					{ mode = "x", keys = "<Leader>" },
+
+					-- Built-in completion
+					{ mode = "i", keys = "<C-x>" },
+
+					-- `g` key
+					{ mode = "n", keys = "g" },
+					{ mode = "x", keys = "g" },
+
+					-- Marks
+					{ mode = "n", keys = "'" },
+					{ mode = "n", keys = "`" },
+					{ mode = "x", keys = "'" },
+					{ mode = "x", keys = "`" },
+
+					-- Registers
+					{ mode = "n", keys = '"' },
+					{ mode = "x", keys = '"' },
+					{ mode = "i", keys = "<C-r>" },
+					{ mode = "c", keys = "<C-r>" },
+
+					-- Window commands
+					{ mode = "n", keys = "<C-w>" },
+
+					-- `z` key
+					{ mode = "n", keys = "z" },
+					{ mode = "x", keys = "z" },
+				},
+
+				clues = {
+					-- Enhance this by adding descriptions for <Leader> mapping groups
+					miniclue.gen_clues.builtin_completion(),
+					miniclue.gen_clues.g(),
+					miniclue.gen_clues.marks(),
+					miniclue.gen_clues.registers(),
+					miniclue.gen_clues.windows(),
+					miniclue.gen_clues.z(),
+				},
+			})
+		end,
+	},
+
+	{
+		"echasnovski/mini.comment",
+		event = "VeryLazy",
+		opts = {
+			hooks = {
+				pre = function()
+					require("ts_context_commentstring.internal").update_commentstring({})
+				end,
+			},
+		},
+		config = function(_, opts)
+			require("mini.comment").setup(opts)
+		end,
+	},
+
+	{
+		"echasnovski/mini.pairs",
+		event = "VeryLazy",
+		config = function(_, opts)
+			require("mini.pairs").setup(opts)
+		end,
+	},
+
 	{
 		"echasnovski/mini.indentscope",
 		event = { "BufReadPre", "BufNewFile" },
@@ -148,6 +208,7 @@ return {
 			require("mini.indentscope").setup(opts)
 		end,
 	},
+
 	{
 		"echasnovski/mini.misc",
 		config = true,
@@ -156,6 +217,7 @@ return {
       { "<leader>vz", function() require("mini.misc").zoom() end, desc = "Toggle Zoom" },
     },
 	},
+
 	{
 		"echasnovski/mini.bracketed",
 		event = "VeryLazy",
@@ -163,6 +225,7 @@ return {
 			require("mini.bracketed").setup()
 		end,
 	},
+
 	{
 		"echasnovski/mini.files",
 		opts = {
@@ -216,6 +279,7 @@ return {
 			})
 		end,
 	},
+
 	{
 		"echasnovski/mini.hipatterns",
 		event = "BufReadPre",
