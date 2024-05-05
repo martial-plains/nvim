@@ -8,7 +8,7 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
+			{ "hrsh7th/cmp-cmdline" },
 			"petertriho/cmp-git",
 			{
 				"tzachar/cmp-tabnine",
@@ -45,50 +45,25 @@ return {
 			end
 
 			return {
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+				},
 				ghost_text = { enabled = true },
 				mapping = cmp.mapping.preset.insert({
 					["<C-b>"] = cmp.mapping.scroll_docs(-4),
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping({
-						i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-						c = function(fallback)
-							if cmp.visible() then
-								cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-							else
-								fallback()
-							end
-						end,
-					}),
-					["<C-j>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-						"c",
-					}),
-					["<C-k>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-						"c",
-					}),
+					-- ["<CR>"] = cmp.mapping({
+					-- 	i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+					-- 	c = function(fallback)
+					-- 		if cmp.visible() then
+					-- 			cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+					-- 		else
+					-- 			fallback()
+					-- 		end
+					-- 	end,
+					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.- }),
 				}),
 
 				snippet = {
@@ -143,33 +118,33 @@ return {
 				},
 			}
 		end,
-		config = function(_, opts)
-			local cmp = require("cmp")
-			cmp.setup(opts)
-
-			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-			cmp.setup.cmdline({ "/", "?" }, {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = {
-					{ name = "buffer" },
-				},
-			})
-
-			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "cmdline" },
-				}),
-			})
-
-			-- Auto pairs
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
-
-			-- Git
-			require("cmp_git").setup({ filetypes = { "NeogitCommitMessage" } })
-		end,
+		-- config = function(_, opts)
+		-- 	local cmp = require("cmp")
+		-- 	cmp.setup(opts)
+		--
+		-- 	-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+		-- 	cmp.setup.cmdline({ "/", "?" }, {
+		-- 		mapping = cmp.mapping.preset.cmdline(),
+		-- 		sources = {
+		-- 			{ name = "buffer" },
+		-- 		},
+		-- 	})
+		--
+		-- 	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+		-- 	cmp.setup.cmdline(":", {
+		-- 		mapping = cmp.mapping.preset.cmdline(),
+		-- 		sources = cmp.config.sources({
+		-- 			{ name = "cmdline" },
+		-- 		}),
+		-- 	})
+		--
+		-- 	-- Auto pairs
+		-- 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		-- 	cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+		--
+		-- 	-- Git
+		-- 	require("cmp_git").setup({ filetypes = { "NeogitCommitMessage" } })
+		-- end,
 	},
 	{
 		"L3MON4D3/LuaSnip",

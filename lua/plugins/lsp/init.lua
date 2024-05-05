@@ -13,7 +13,6 @@ return {
 			{ "smjonas/inc-rename.nvim", config = true },
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"jay-babu/mason-null-ls.nvim",
 		},
 		opts = {
 			servers = {
@@ -82,25 +81,6 @@ return {
 				ensure_installed()
 			end
 		end,
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufReadPre",
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-				sources = {
-					nls.builtins.formatting.stylua,
-					nls.builtins.formatting.shfmt,
-				},
-			}
-		end,
-	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		opts = { ensure_installed = nil, automatic_installation = true, automatic_setup = false },
 	},
 	{
 		"utilyre/barbecue.nvim",
